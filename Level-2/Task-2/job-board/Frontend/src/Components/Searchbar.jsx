@@ -49,7 +49,8 @@ const SearchBar = ({ onSearch }) => {
 
   // Handle search query submission
   const handleSearch = () => {
-    onSearch(query);
+    const [title, location, workType] = query.split(';'); // Split query based on some delimiter or adjust as needed
+    onSearch(new URLSearchParams({ title, location, workType }).toString());
   };
 
   // Handle "Enter" key press for search using onKeyDown

@@ -37,6 +37,9 @@ const LogoSection = styled.div`
         color: #007bff; /* Change color on hover */
       }
     }
+    @media (max-width: 768px) {
+        padding-left: 85px;
+  }
   }
 `;
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import JobCard from '../Components/Job-card';
-import SearchBar from '../Components/SearchBar';
+import SearchBar from '../Components/Searchbar';
 import styled from 'styled-components';
 
 const JobListingsPage = () => {
@@ -8,18 +8,21 @@ const JobListingsPage = () => {
   
   // Fetch all jobs when the component mounts
   useEffect(() => {
-    fetch('http://localhost:8080/api/jobs') // Replace with your actual backend API
+    fetchJobs();
+  }, []);
+
+  // Fetch jobs with optional search query
+  const fetchJobs = (query = '') => {
+    fetch(`http://localhost:8080/api/jobs?${query}`)
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.error('Error fetching jobs:', err));
-  }, []);
+  };
 
   // Handle search input
   const handleSearch = (query) => {
-    fetch(`http://localhost:8080/api/jobs?search=${query}`) // Adjust this to match your API endpoint
-      .then((res) => res.json())
-      .then((data) => setJobs(data))
-      .catch((err) => console.error('Error fetching jobs:', err));
+    const searchParams = new URLSearchParams(query).toString();
+    fetchJobs(searchParams);
   };
 
   return (
