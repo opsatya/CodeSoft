@@ -11,6 +11,7 @@ import Footer from './Components/Footer';
 import About from './Components/About';
 import CreateAccount from './Pages/CreateAccount';
 import Login from './Pages/Login';
+import ApplicationPage from './Pages/ApplicationPage';
 function App() {
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/candidate-dashboard" element={<CandidateDashboard />} />
         <Route path="/create-account" element={<CreateAccount />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/apply/:id" element={<ApplicationPage />} />
       </Routes>
       <Footer />
     </Router>

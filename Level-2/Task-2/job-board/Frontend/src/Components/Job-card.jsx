@@ -1,10 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-// JobCard Component to display job details
 const JobCard = ({ job }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/browse-jobs/${job.id}`);
+  };
+
   return (
-    <Card>
+    <Card onClick={handleCardClick}>
       <LogoContainer>
         <img src={job.logo} alt={`${job.company} logo`} />
       </LogoContainer>
@@ -28,7 +34,7 @@ const Card = styled.div`
   align-items: center;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  cursor: pointer;
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
